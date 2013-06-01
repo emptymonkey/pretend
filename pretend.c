@@ -38,7 +38,7 @@ int main(int argc, char **argv){
 	char *end_ptr;
 
 	if(argc < 3){
-		fprintf(stderr, "Usage: %s uid:gid[:gid1:gid2:...] COMMAND\n", argv[0]);
+		fprintf(stderr, "Usage: %s uid:gid[:gid1:gid2:...] COMMAND [ARGS]\n", argv[0]);
 		exit(-1);
 	}
 
@@ -46,7 +46,7 @@ int main(int argc, char **argv){
 	uid = (uid_t) strtol(argv[1], &end_ptr, 10);
 	gid = (gid_t) strtol(end_ptr + 1, &end_ptr, 10);
 	if(errno){
-		fprintf(stderr, "Usage: %s uid:gid[:gid1:gid2:...] COMMAND\n", argv[0]);
+		fprintf(stderr, "Usage: %s uid:gid[:gid1:gid2:...] COMMAND [ARGS]\n", argv[0]);
 		exit(-1);
 	}
 
