@@ -59,7 +59,7 @@ Basic use examples:
     I have no name!@monkey:~$ id
     uid=666 gid=9000 groups=9000
 
-More advanced usage example, looping over the entries of a remote root-squashed file system without read privileges:
+A more advanced usage example, looping over the entries of a remote root-squashed file system without read privileges:
 
     root@monkey:/mnt# ls -l target_vol
     drwxr-x---     2  8803     6211    4096 May 22  2011 foo/
