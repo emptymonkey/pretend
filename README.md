@@ -1,7 +1,7 @@
 # Pretend #
-_pretend_ is a simple tool that lets you change your user identity ([uid](http://en.wikipedia.org/wiki/User_identifier_%28Unix%29)), group identity ([gid](http://en.wikipedia.org/wiki/Group_identifier)), and your list of supplementary group identities ([sgids](http://en.wikipedia.org/wiki/Group_identifier#Primary_vs._supplementary)) in Unix/Linux.
+_pretend_ is a simple tool that lets you change your user identity ([uid](http://en.wikipedia.org/wiki/User_identifier_%28Unix%29)), group identity ([gid](http://en.wikipedia.org/wiki/Group_identifier)), and your list of supplementary group identities ([sgids](http://en.wikipedia.org/wiki/Group_identifier#Primary_vs._supplementary)) in Unix/Linux.  
 
-** That's awesome! [1337 h4X0rZ rUL3!!](http://hackertyper.com/) **
+**That's awesome! [1337 h4X0rZ rUL3!!](http://hackertyper.com/)**
 
 Uh, no. This isn't an [exploit](http://en.wikipedia.org/wiki/Exploit_%28computer_security%29). This is a tool that lets you legitimately change your uid/gid/sgids using the [normal mechanisms](http://en.wikipedia.org/wiki/Syscall) of the underlying operating system. Changing identity is a privileged operation reserved for accounts with the [CAP_SETUID](http://lxr.linux.no/#linux+v3.9.4/include/uapi/linux/capability.h#L132) capability, which normally means [root](http://en.wikipedia.org/wiki/Superuser#Unix_and_Unix-like). Actually, this tool is a *very* simple wrapper for the system calls that do exactly this:
 
@@ -9,23 +9,23 @@ Uh, no. This isn't an [exploit](http://en.wikipedia.org/wiki/Exploit_%28computer
 <a href="http://linux.die.net/man/2/setresgid">man setresgid</a>
 <a href="http://linux.die.net/man/2/setgroups">man setgroups</a>
 </code></pre>
+  
 
-
-** So what then?! I'll just use _[su](http://linux.die.net/man/1/su)_! **
+**So what then?! I'll just use _[su](http://linux.die.net/man/1/su)_!**
 
 _su_ is good for switching uids for identities that already exist on the machine. However, if the identity isn't in /etc/passwd, then su will throw an error.
 
     empty@monkey:~$ sudo su foo
     Unknown id: foo
+  
 
-** But why would I ever need that? **
+**But why would I ever need that?**
 
 There are many reasons why you may want to quickly switch to a non-valid user id:
-	
-* Launching or accessing a [process](http://en.wikipedia.org/wiki/Process_%28computing%29), to meet a critical business need, after the process owner has left the company (and the account has been terminated).
-* Gaining access to a remote [root-squashed](http://en.wikipedia.org/wiki/Unix_security#Root_squash) filesystem as part of a [pentest](http://en.wikipedia.org/wiki/Penetration_test), for which you have no valid user map.
-* Performing forensic analysis on filesystems that originated from other hosts.
 
+* Performing a forensic analysis of filesystems that originated from other hosts.
+* Gaining access to a remote [root-squashed](http://en.wikipedia.org/wiki/Unix_security#Root_squash) filesystem as part of a [pentest](http://en.wikipedia.org/wiki/Penetration_test), for which you have no valid user map.
+* Launching or accessing a [process](http://en.wikipedia.org/wiki/Process_%28computing%29), to meet a critical business need, after the process owner has left the company (and the account has been terminated).
 
 ## Usage ##
 
@@ -66,4 +66,4 @@ More advanced usage example, looping over the entries of a remote root-squashed 
     drwxr-x---     2  9836     6211    4096 Jun  7  2012 bar/
     drwxr-x---     3  7438     6211    4096 Apr 19  2007 baz/
 
-    root@monkey:/mnt# for i in `ls --color=no`; do pretend `ls -ld $i | awk '{print $3,$4}' OFS=:` ls -al; done
+    root@monkey:/mnt# for i in `ls --color=no -1`; do pretend `ls -ld $i | awk '{print $3,$4}' OFS=:` ls -al; done
