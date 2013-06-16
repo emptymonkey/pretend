@@ -3,7 +3,7 @@ _pretend_ is a simple tool that lets you change your user identity ([uid](http:/
 
 **That's awesome! [1337 h4X0rZ rUL3!!](http://hackertyper.com/)**
 
-Uh, no. This isn't an [exploit](http://en.wikipedia.org/wiki/Exploit_%28computer_security%29). This is a tool that lets you legitimately change your uid/gid/sgids using the [normal mechanisms](http://en.wikipedia.org/wiki/Syscall) of the underlying operating system. Changing identity is a privileged operation reserved for accounts with the [CAP_SETUID](http://lxr.linux.no/#linux+v3.9.4/include/uapi/linux/capability.h#L132) capability, which normally means [root](http://en.wikipedia.org/wiki/Superuser#Unix_and_Unix-like). Actually, this tool is a *very* simple wrapper for the system calls that do exactly this:
+Uh, no. This isn't an [exploit](http://en.wikipedia.org/wiki/Exploit_%28computer_security%29). This is a tool that lets you legitimately change your uid/gid/sgids using the [normal mechanisms](http://en.wikipedia.org/wiki/Syscall) of the underlying operating system. Changing identity is a privileged operation reserved for accounts with the [CAP_SETUID](http://lxr.linux.no/#linux+v3.9.4/include/uapi/linux/capability.h#L132) [capability](http://linux.die.net/man/7/capabilities), which normally means [root](http://en.wikipedia.org/wiki/Superuser#Unix_and_Unix-like). Actually, this tool is a *very* simple wrapper for the system calls that do exactly this:
 
 <pre><code><a href="http://linux.die.net/man/2/setresuid">man setresuid</a>
 <a href="http://linux.die.net/man/2/setresgid">man setresgid</a>
