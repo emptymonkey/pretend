@@ -1,6 +1,6 @@
 # Pretend #
 
-_pretend_ is a simple tool for altering your user identity ([uid](http://en.wikipedia.org/wiki/User_identifier_%28Unix%29)), group identity ([gid](http://en.wikipedia.org/wiki/Group_identifier)), and your list of supplementary group identities ([sgids](http://en.wikipedia.org/wiki/Group_identifier#Primary_vs._supplementary)) in Unix/Linux.  
+_pretend_ is a simple tool for altering your user identity ([uid](http://en.wikipedia.org/wiki/User_identifier_%28Unix%29)), group identity ([gid](http://en.wikipedia.org/wiki/Group_identifier)), and your list of supplementary group identities ([sgids](http://en.wikipedia.org/wiki/Group_identifier#Primary_vs._supplementary)) in Linux.
 
 **That's awesome! [1337 h4X0rZ rUL3!!](http://hackertyper.com/)**
 
@@ -17,7 +17,6 @@ _su_ is good for switching uids for identities that already exist on the machine
 
     empty@monkey:~$ sudo su foo
     Unknown id: foo
-  
 
 **But why would I ever need that?**
 
