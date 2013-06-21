@@ -1,14 +1,14 @@
 # Pretend #
-_pretend_ is a simple tool that lets you change your user identity ([uid](http://en.wikipedia.org/wiki/User_identifier_%28Unix%29)), group identity ([gid](http://en.wikipedia.org/wiki/Group_identifier)), and your list of supplementary group identities ([sgids](http://en.wikipedia.org/wiki/Group_identifier#Primary_vs._supplementary)) in Unix/Linux.  
+
+_pretend_ is a simple tool for altering your user identity ([uid](http://en.wikipedia.org/wiki/User_identifier_%28Unix%29)), group identity ([gid](http://en.wikipedia.org/wiki/Group_identifier)), and your list of supplementary group identities ([sgids](http://en.wikipedia.org/wiki/Group_identifier#Primary_vs._supplementary)) in Unix/Linux.  
 
 **That's awesome! [1337 h4X0rZ rUL3!!](http://hackertyper.com/)**
 
 Uh, no. This isn't an [exploit](http://en.wikipedia.org/wiki/Exploit_%28computer_security%29). This is a tool that lets you legitimately change your uid/gid/sgids using the [normal mechanisms](http://en.wikipedia.org/wiki/Syscall) of the underlying operating system. Changing identity is a privileged operation reserved for accounts with the [CAP_SETUID](http://lxr.linux.no/#linux+v3.9.4/include/uapi/linux/capability.h#L132) [capability](http://linux.die.net/man/7/capabilities), which normally means [root](http://en.wikipedia.org/wiki/Superuser#Unix_and_Unix-like). Actually, this tool is a *very* simple wrapper for the system calls that do exactly this:
 
-<pre><code><a href="http://linux.die.net/man/2/setresuid">man setresuid</a>
-<a href="http://linux.die.net/man/2/setresgid">man setresgid</a>
-<a href="http://linux.die.net/man/2/setgroups">man setgroups</a>
-</code></pre>
+* [setresuid](http://linux.die.net/man/2/setresuid)
+* [setresgid](http://linux.die.net/man/2/setresgid)
+* [setgroups](http://linux.die.net/man/2/setgroups)
   
 
 **So what then?! I'll just use _[su](http://linux.die.net/man/1/su)_!**
@@ -31,17 +31,9 @@ There are many reasons why you may want to quickly switch to a non-valid user id
 
     Usage: pretend uid:gid[:gid1:gid2:...] COMMAND [ARGS]
 
-
-## Installation ##
-
-    git clone git@github.com:emptymonkey/pretend.git
-    cd pretend
-    make
-
-
 ## Examples ##
 
-Basic use examples:
+Lets start with some basic use examples:
 
     empty@monkey:~$ id
     uid=1000(empty) gid=1000(empty) groups=1000(empty),4(adm),24(cdrom),25(floppy),29(audio)
@@ -59,7 +51,7 @@ Basic use examples:
     I have no name!@monkey:~$ id
     uid=666 gid=9000 groups=9000
 
-A more advanced usage example, looping over the entries of a remote root-squashed file system without read privileges:
+Here is a more advanced usage example, looping over the entries of a remote root-squashed file system without read privileges:
 
     root@monkey:/mnt# ls -l target_vol
     drwxr-x---     2  8803     6211    4096 May 22  2011 foo/
@@ -67,3 +59,10 @@ A more advanced usage example, looping over the entries of a remote root-squashe
     drwxr-x---     3  7438     6211    4096 Apr 19  2007 baz/
 
     root@monkey:/mnt# for i in `ls --color=no -1`; do pretend `ls -ld $i | awk '{print $3,$4}' OFS=:` ls -al; done
+
+## Installation ##
+
+    git clone git@github.com:emptymonkey/pretend.git
+    cd pretend
+    make
+
