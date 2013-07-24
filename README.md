@@ -61,7 +61,7 @@ Here is a more advanced usage example, looping over the entries of a remote root
 
 ## Installation ##
 
-    git clone git@github.com:emptymonkey/pretend.git
+    git clone https://github.com/emptymonkey/pretend.git
     cd pretend
     make
 
