@@ -18,6 +18,8 @@ _su_ is good for switching uids for identities that already exist on the machine
     empty@monkey:~$ sudo su foo
     Unknown id: foo
 
+Further, you can't use _su_ to change to a uid for which you only have the numeric value and not the human readable string. _pretend_ gives you this functionality.
+
 **But why would I ever need that?**
 
 There are many reasons why you may want to quickly switch to a non-valid user id:
